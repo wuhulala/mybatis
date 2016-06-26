@@ -26,6 +26,9 @@
         <mapper resource="com/atguigu/mybatis_test/test1/userMapper.xml"/>
         <mapper resource="com/atguigu/mybatis_test/test2/userMapper.xml"/>
         <mapper resource="com/atguigu/mybatis_test/test5/OrderMapper.xml"/>
+        <mapper resource="com/atguigu/mybatis_test/test6/ClassMapper.xml"/>
+        <mapper resource="com/atguigu/mybatis_test/test7/UserMapper.xml"/>
+        <mapper resource="com/atguigu/mybatis_test/test8/UserMapper.xml"/>
 
         <mapper class="com.atguigu.mybatis_test.test3.UserMapper"/>
         <mapper class="com.atguigu.mybatis_test.test4.OrderMapper"/>

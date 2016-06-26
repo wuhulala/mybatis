@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atguigu.mybatis_test.test8.UserMapper">
+        <!--//回收策略为先进先出
+        //自动刷新时间 60s
+        //最多缓存 512 个引用对象
+        //只读-->
+        <cache
+                eviction="FIFO"
+        flushInterval="60000"
+        size="512"
+        readOnly="true"/>
+        <select id="getUser" parameterType="int" resultType="User">
+                SELECT * FROM users WHERE id=#{id}
+        </select>
+
+</mapper>

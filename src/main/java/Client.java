@@ -1,3 +1,5 @@
+import com.atguigu.mybatis_test.bean.Classes;
+import com.atguigu.mybatis_test.bean.ConditionUser;
 import com.atguigu.mybatis_test.bean.Order;
 import com.atguigu.mybatis_test.bean.User;
 import com.atguigu.mybatis_test.test3.UserMapper;
@@ -6,12 +8,15 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author xueaohui
@@ -95,4 +100,99 @@ public class Client {
 
     }
 
+    /**
+     *  一对一关联1
+     */
+    @Test
+    public void testOneToOne1(){
+
+        SqlSession session = sessionFactory.openSession();
+        String statement = "com.atguigu.mybatis_test.test6.ClassMapper"+".getClass";
+        Classes order = session.selectOne(statement, 1);
+        System.out.println(order);
+        session.commit();
+
+    }
+    /**
+     *  一对一关联2
+     */
+    @Test
+    public void testOO2() {
+        SqlSession sqlSession = sessionFactory.openSession();
+        Classes c = sqlSession.selectOne("com.atguigu.mybatis_test.test6.ClassMapper.getClass2", 1);
+        System.out.println(c);
+    }
+
+    /**
+     *  一对多关联1
+     */
+    @Test
+    public void testOM1() {
+        SqlSession sqlSession = sessionFactory.openSession();
+        Classes c = sqlSession.selectOne("com.atguigu.mybatis_test.test6.ClassMapper.getClass3", 1);
+        System.out.println(c);
+    }
+
+    /**
+     *  一对多关联2
+     */
+    @Test
+    public void testOM2() {
+        SqlSession sqlSession = sessionFactory.openSession();
+        Classes c = sqlSession.selectOne("com.atguigu.mybatis_test.test6.ClassMapper.getClass4", 1);
+        System.out.println(c);
+    }
+
+    /**
+     *  动态SQL
+     */
+    @Test
+    public void testDynamicSQL() {
+        SqlSession sqlSession = sessionFactory.openSession();
+        String statement = "com.atguigu.mybatis_test.test7.UserMapper.getUser";
+
+        List<User> list = sqlSession.selectList(statement, new ConditionUser("%a%", 1, 20));
+        System.out.println(list);
+        sqlSession.close();
+    }
+
+    /**
+     *  存储过程
+     */
+    @Test
+    public void testStatement() {
+        SqlSession sqlSession = sessionFactory.openSession();
+        String statement = "com.atguigu.mybatis_test.test7.UserMapper.getCount";
+        Map<String, Integer> paramMap = new HashMap<String, Integer>();
+        paramMap.put("sex_id", 0);
+        Object returnValue = sqlSession.selectOne(statement, paramMap);
+        System.out.println("result="+paramMap.get("result"));
+        System.out.println("sex_id="+paramMap.get("sex_id"));
+        System.out.println("returnValue="+returnValue);
+
+        sqlSession.close();
+    }
+
+    /**
+     * 测试二级缓存
+     */
+    @Test
+    public void testCache2(){
+        String statement = "com.atguigu.mybatis_test.test8.UserMapper"+".getUser";
+
+        SqlSession session = sessionFactory.openSession();
+        User user  = session.selectOne(statement, 1);
+        System.out.println(user);
+        session.commit();
+
+        SqlSession session2 = sessionFactory.openSession();
+        User user2  = session.selectOne(statement, 1);
+        System.out.println(user2);
+        session.commit();
+
+    }
+    @After
+  public void after(){
+
+}
 }

@@ -25,4 +25,6 @@
     <select id="getAllUsers" resultType="User">
         SELECT * FROM users
     </select>
+
+
 </mapper>
