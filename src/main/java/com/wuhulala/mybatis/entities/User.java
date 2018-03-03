@@ -1,4 +1,4 @@
-package com.atguigu.mybatis_test.bean;
+package com.wuhulala.mybatis.entities;
 
 import java.io.Serializable;
 
@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @author xueaohui
  */
 public class User implements Serializable {
-    private int id;
+    private Integer id;
     private String name;
     private int age;
     private String sex;
@@ -20,7 +20,7 @@ public class User implements Serializable {
         this.age = age;
     }
 
-    public User(int id, String name, int age) {
+    public User(Integer id, String name, int age) {
         this.id = id;
         this.name = name;
         this.age = age;

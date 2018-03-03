@@ -5,8 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.wuhulala</groupId>
-    <artifactId>mybaits</artifactId>
+    <artifactId>mybatis</artifactId>
     <version>1.0.0</version>
+
+    <properties>
+        <spring.framework.version>4.3.13.RELEASE</spring.framework.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.mybatis</groupId>
@@ -26,83 +31,100 @@
             <version>5.1.35</version>
         </dependency>
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.7</version>
         </dependency>
 
         <!--spring start-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
-            <version>4.2.6.RELEASE</version>
-            <scope>compile</scope>
+            <version>${spring.framework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aspects</artifactId>
-            <version>4.2.6.RELEASE</version>
-            <scope>compile</scope>
+            <version>${spring.framework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
-            <version>4.2.6.RELEASE</version>
-            <scope>compile</scope>
+            <version>${spring.framework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>4.2.6.RELEASE</version>
-            <scope>compile</scope>
+            <version>${spring.framework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
-            <version>4.2.6.RELEASE</version>
-            <scope>compile</scope>
+            <version>${spring.framework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>4.2.6.RELEASE</version>
-            <scope>compile</scope>
+            <version>${spring.framework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-expression</artifactId>
-            <version>4.2.6.RELEASE</version>
-            <scope>compile</scope>
+            <version>${spring.framework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
-            <version>4.2.6.RELEASE</version>
-            <scope>compile</scope>
+            <version>${spring.framework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>4.2.6.RELEASE</version>
-            <scope>compile</scope>
+            <version>${spring.framework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
-            <version>4.2.6.RELEASE</version>
-            <scope>compile</scope>
+            <version>${spring.framework.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <version>4.2.6.RELEASE</version>
+            <version>${spring.framework.version}</version>
+            <scope>test</scope>
         </dependency>
+        <!-- 添加druid连接池包 -->
         <dependency>
-            <groupId>c3p0</groupId>
-            <artifactId>c3p0</artifactId>
-            <version>0.9.1.2</version>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.12</version>
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
 
+    </build>
 </project>

@@ -1,0 +1,72 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wuhulala.mybatis.mapper.UserMapper">
+
+<!--
+    <cache/>
+-->
+    <resultMap type="com.wuhulala.mybatis.entities.User" id="userBaseResultMap">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="age" property="age"/>
+        <result column="sex" property="sex"/>
+    </resultMap>
+
+    <sql id="baseColumn">
+        id,name,age,sex
+    </sql>
+
+    <sql id="whereClause">
+        <if test="id != null and id != ''">
+            and id = #{id}
+        </if>
+        <if test="name != null and name != ''">
+            and name like #{name}
+        </if>
+        <if test="age != null and age != ''">
+            and age = #{age}
+        </if>
+        <if test="sex != null and sex != ''">
+            and sex = #{sex}
+        </if>
+    </sql>
+
+    <sql id="updateClause">
+        <trim prefix="set" suffixOverrides=",">
+
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="age != null and age != ''">
+                age = #{age},
+            </if>
+            <if test="sex != null and sex != ''">
+                sex = #{sex},
+            </if>
+        </trim>
+    </sql>
+    <sql id="updateWhereClause">
+        <if test="id != null">
+            and id = #{id}
+        </if>
+    </sql>
+    <select id="selectByExample" parameterType="User" resultType="User">
+        select
+        <include refid="baseColumn"/>
+        from user
+        where
+        1 = 1
+        <include refid="whereClause"/>
+    </select>
+
+    <update id="updateOne" parameterType="User" >
+        update user
+        <include refid="updateClause"/>
+        where
+         1 = 1
+         <include refid="updateWhereClause"/>
+    </update>
+
+</mapper>
