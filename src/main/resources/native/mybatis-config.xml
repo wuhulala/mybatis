@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--配置全局属性-->
+    <settings>
+        <setting name="localCacheScope" value="SESSION"/>
+        <setting name="cacheEnabled" value="true"/>
+
+        <!--使用列别名替换别名　　默认true
+        select name as title form table;
+        -->
+        <!--
+                <setting name="useColumnLabel" value="true"/>
+        -->
+
+        <!--开启驼峰命名转换Table:create_time到 Entity(createTime)-->
+        <!--
+                <setting name="mapUnderscoreToCamelCase" value="true"/>
+        -->
+    </settings>
+    <typeAliases>
+        <package name="com.wuhulala.mybatis.entities"/>
+    </typeAliases>
+    <plugins>
+        <plugin interceptor="com.wuhulala.mybatis.interceptor.ExecuteTimeInterceptor"></plugin>
+        <plugin interceptor="com.wuhulala.mybatis.interceptor.ParameterHandlerInterceptor"></plugin>
+    </plugins>
+
+    <environments default="mysql">
+        <environment id="mysql">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://192.168.1.101:3306/test"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+        <!-- <environment id="oracle">
+             <transactionManager type=""></transactionManager>
+             <dataSource type=""></dataSource>
+         </environment>-->
+    </environments>
+
+    <databaseIdProvider type="DB_VENDOR">
+        <property name="SQL Server" value="sqlserver"/>
+        <property name="DB2" value="db2"/>
+        <property name="Oracle" value="oracle"/>
+        <property name="MySQL" value="mysql"/>
+    </databaseIdProvider>
+
+    <mappers>
+        <mapper resource="com/wuhulala/mybatis/mapper/UserMapper.xml"/>
+    </mappers>
+
+</configuration>

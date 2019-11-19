@@ -25,9 +25,9 @@ public class UserMapperTest extends BaseTest {
         query.setId(1);
 
         User result = mapper.selectByExample(query);
-        for (int i = 0; i < 10; i++) {
-            mapper.selectByExample(query);
-        }
+//        for (int i = 0; i < 10; i++) {
+//            mapper.selectByExample(query);
+//        }
         System.out.println(result);
         Assert.assertNotNull(result);
     }

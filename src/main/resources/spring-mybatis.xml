@@ -42,6 +42,14 @@
         <property name="filters" value="mergeStat"/>
     </bean>
 
+    <bean name="databaseIdProvider" class="org.apache.ibatis.mapping.VendorDatabaseIdProvider">
+        <property name="properties">
+            <map>
+                <entry key="MySQL" value="mysql"></entry>
+                <entry key="ORACLE" value="oracle"></entry>
+            </map>
+        </property>
+    </bean>
 
     <!-- 配置sqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -49,7 +57,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="mapperLocations" value="classpath:com/wuhulala/**/*.xml"/>
         <property name="typeAliasesPackage" value="com.wuhulala.mybatis.entities"/>
-
+        <property name="databaseIdProvider" ref="databaseIdProvider"/>
     </bean>
 
     <!-- 配置扫描器 -->

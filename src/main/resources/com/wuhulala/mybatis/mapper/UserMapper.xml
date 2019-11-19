@@ -52,7 +52,7 @@
             and id = #{id}
         </if>
     </sql>
-    <select id="selectByExample" parameterType="User" resultType="User">
+    <select id="selectByExample"  databaseId="mysql" parameterType="User" resultType="User">
         select
         <include refid="baseColumn"/>
         from user
