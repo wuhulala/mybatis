@@ -69,4 +69,6 @@
          <include refid="updateWhereClause"/>
     </update>
 
+    <cache eviction="WuhulalaCache" size="10" blocking="" type=""/>
+
 </mapper>
